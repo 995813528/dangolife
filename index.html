@@ -1,0 +1,445 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Site Properities -->
+    <title>团子生活 | dangolife - 发现美食之旅</title>
+    <link rel="stylesheet" type="text/css" href="css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="css/homepage.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/semantic.js"></script>
+    <script src="js/homepage.js"></script>
+    <script src="js/feed.js"></script>
+</head>
+<body id="home">
+    <div class="ui inverted right sidebar vertical menu" style="padding-top:50px">
+        <div class="item">
+            <div class="ui fluid icon input">
+                <input type="text" placeholder="搜索美食佳饮...">
+                <i class="search icon"></i>
+            </div>
+        </div>
+        <div class="item" style="font-size:16px">
+            <b>团子菜谱</b>
+            <div class="menu">
+                <a class="item">中华美食<i class="fire icon"></i></a>
+                <a class="item">世界味道<i class="globe icon"></i></a>
+            </div>
+        </div>
+        <div class="item" style="font-size:16px">
+            <b>团子小铺</b>
+            <div class="menu">
+                <a class="item">小食屋<i class="food icon"></i></a>
+                <a class="item">酷饮店<i class="coffee icon"></i></a>
+                <a class="item">团子酒吧<i class="glass icon"></i></a>
+            </div>
+        </div>
+        <a class="item" style="font-size:16px"><b>美文分享</b></a>
+        <a class="item" style="font-size:16px"><b>健康生活</b></a>
+        <div class="item">
+            <div class="2 fluid ui buttons">
+                <div class="ui twitter button">注册</div>
+                <div class="ui green button">登录</div>
+            </div>
+        </div>
+    </div>
+    <div class="ui inverted page grid masthead segment">
+        <div class="column">
+            <div class="inverted ui top fixed large borderless menu" style="box-shadow: 0px 0px 4px rgba(0,0,0,0.4)">
+                <div class="title item" style="padding:5px 10px;">
+                    <img src="images/logo_white.png" style="height:36px; width:auto" />
+                </div>
+                <div class="right menu">
+                    <div class="ui mobile item black launch button" style="margin:0px;padding:6px 6px 8px 8px;background-color:#353535;">
+                        <img src="images/menu.png" style="height:32px; width:32px;" />
+                    </div>
+                    <!--<div class="ui top right pointing dropdown link mobile item" style="padding-left:8px;padding-right:8px;">
+                        <div class="ui black launch button" style="padding:0px 2px;">
+                            <img src="images/menu.png" style="height:32px; width:auto;margin:0px" />
+                        </div>
+                    </div>-->
+                    <div class="ui dropdown link item">
+                        团子菜谱<i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a class="item">中华美食</a>
+                            <a class="item">世界味道</a>
+                        </div>
+                    </div>
+                    <div class="ui dropdown link item">
+                        团子小铺<i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a class="item"><i class="food icon"></i>小食屋</a>
+                            <a class="item"><i class="coffee icon"></i>酷饮站</a>
+                            <a class="item"><i class="glass icon"></i>团子酒吧</a>
+                        </div>
+                    </div>
+                    <a class="item">美文分享</a>
+                    <a class="item">健康生活</a>
+                    <!--<div class="item" style="padding:0px 10px">
+                        <div class="ui mini icon input" style="padding:7px 0px">
+                            <input type="text" placeholder="搜索美食佳饮..." style="height:32px;width:160px;padding:6px 10px;font-size:14px;">
+                            <i class=" disabled search icon" style="padding:15px 0px"></i>
+                        </div>
+                    </div>-->
+                    <div class="item" style="padding:4px 10px">
+                        <div class="ui twitter button">注册</div>
+                    </div>
+                    <div class="item" style="padding:4px 10px">
+                        <div class="ui green button">登录</div>
+                    </div>
+                </div>
+            </div>
+            <!--<img src="images/cat.png" class="ui medium image">-->
+            <div class="ui hidden transition information">
+                <h1 class="center aligned ui inverted header">万千美食，待你发现</h1>
+
+                <div class="center aligned column">
+                    <p>邂逅全世界的流行美味，体验全新生活方式。</p>
+                    <!--<a class="ui inverted label" style="background-color:transparent;font-size:1.2em;text-shadow:0px 1px 4px rgba(0,0,0,0.4)">
+                        探索最新美食  <i class="angle right icon"></i>
+                    </a>-->
+                    <div class="center aligned large black inverted ui button" id="newest_button">
+                        浏览最新美食  <i class="angle right icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui page grid overview segment" id="search_input_anchor" style="background:#faf7f4;padding-bottom:0">
+        <div class="ui one wide column"></div>
+        <div class="fourteen wide center aligned column">
+            <div class="row" id="search_input_row">
+                <div class="ui big icon fluid input" style="margin:0 20%;">
+                    <input type="text" placeholder="搜索美食佳饮……" id="big_search_input" onfocus="search_input_onfocus()" onblur="search_input_onblur()">
+                    <script type="text/javascript">
+                        function search_input_onfocus() {
+                            var obj = event.srcElement;
+                            obj.placeholder = "";
+                            $("html,body").animate({ scrollTop: $("#search_input_anchor").offset().top }, 800);
+                        };
+                        function search_input_onblur() {
+                            var obj = document.getElementById("big_search_input");
+                            obj.placeholder = "搜索美食佳饮……";
+                        }
+                    </script>
+                    <i class="large search icon" id="big_search_icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui page grid overview segment" style="background:#faf7f4;padding-top:0;margin-top:0">
+        <div class="ui one wide column"></div>
+        <div class="fourteen wide center aligned column">
+            <!--<div class="row" id="search_input_row">
+                <div class="ui big icon fluid input" style="margin:0 20%;">
+                    <input type="text" placeholder="搜索美食佳饮……" id="big_search_input" onfocus="search_input_onfocus()" onblur="search_input_onblur()">
+                    <script type="text/javascript">
+                        function search_input_onfocus() {
+                            var obj = event.srcElement;
+                            obj.placeholder = "";
+                            $("html,body").animate({ scrollTop: $("#search_input_anchor").offset().top }, 800);
+                        };
+                        function search_input_onblur() {
+                            var obj = document.getElementById("big_search_input");
+                            obj.placeholder = "搜索美食佳饮……";
+                        }
+                    </script>
+                    <i class="large search icon" id="big_search_icon"></i>
+                </div>
+            </div>-->
+            <div class="ui center aligned stackable celled grid">
+                <div class="row">
+                    <div class="two wide column" style="background-image:url(images/t4.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            家庭聚会
+                        </div>
+                        <p id="topic_list_p">那些必备的拿手好菜</p>
+                    </div>
+                    <div class="one wide column" style="background-image:url(images/t5.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            披萨
+                        </div>
+                        <p id="topic_list_p">经典披萨大集结</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="one wide column" style="background-image:url(images/t1.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            日本料理
+                        </div>
+                        <p id="topic_list_p"></p>
+                    </div>
+                    <div class="one wide column" style="background-image:url(images/t3.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            湘菜
+                        </div>
+                        <p id="topic_list_p">感受魅惑的辣</p>
+                    </div>
+                    <div class="one wide column" style="background-image:url(images/t2.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            抹茶
+                        </div>
+                        <p id="topic_list_p"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="one wide column" style="background-image:url(images/t6.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            千层蛋糕
+                        </div>
+                        <p id="topic_list_p"></p>
+                    </div>
+                    <div class="two wide column" style="background-image:url(images/t7.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            英式下午茶
+                        </div>
+                        <p id="topic_list_p">慵懒随性，美味享受</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="one wide column" style="background-image:url(images/t8.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            水果沙拉
+                        </div>
+                        <p id="topic_list_p"></p>
+                    </div>
+                    <div class="one wide column" style="background-image:url(images/t9.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            咖啡
+                        </div>
+                        <p id="topic_list_p"></p>
+                    </div>
+                    <div class="one wide column" style="background-image:url(images/t10.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            芝士
+                        </div>
+                        <p id="topic_list_p">芝士狂热指南</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="two wide column" style="background-image:url(images/t11.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            营养早餐
+                        </div>
+                        <p id="topic_list_p">活力一整天</p>
+                    </div>
+                    <div class="one wide column" style="background-image:url(images/t12.jpg);" id="topic_list_column">
+                        <div class="ui header" id="topic_list_header">
+                            芋头烧鸡翅
+                        </div>
+                        <p id="topic_list_p"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="ui inverted page grid stackable relaxed feature segment">
+        <div class="row">
+            <div class="column">
+                <h1 class="center aligned ui header">
+                    Cat Tips Right In Your Inbox
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="ten wide column">
+                <h2 class="ui header">How to Win Your Cats Attention</h2>
+                <p>Getting your cat to notice you is a large part of being a pet owner. Although I have a lot of patience for writing things about cats, perhaps this might be enough body copy to make this section of text look filled out.</p>
+                <p>This and other tips can be found in our newsletter, amazing right?</p>
+                <div class="ui basic inverted animated button button">
+                    <div class="visible content">Read More</div>
+                    <div class="hidden content"><i class="right arrow icon"></i></div>
+                </div>
+                <div class="ui inverted section divider"></div>
+                <h3 class="ui header">More articles</h3>
+                <div class="ui inverted animated selection list">
+                    <div class="item">
+                        How to win in a fight with a cat
+                        <div class="right floated">Jan 20, 2023</div>
+                    </div>
+                    <div class="item">
+                        A Supposedly Fun Cat Toy I will Never Buy Again
+                        <div class="right floated">Jan 1, 2023</div>
+                    </div>
+                    <div class="item">
+                        Much ado about yarn
+                        <div class="right floated">Dec 20, 2022</div>
+                    </div>
+                </div>
+            </div>
+            <div class="six wide column">
+                <div class="ui secondary form segment">
+                    <h3 class="ui header">Get Our Amazing Newsletter Bi-Daily</h3>
+                    <p>Sign up and get spammed with cats every day. We have no unsubscribe button!</p>
+                    <div class="field">
+                        <div class="ui left icon action input">
+                            <i class="user icon"></i>
+                            <input name="email" type="text" placeholder="name@email.com">
+                            <div class="ui teal submit button">Sign up</div>
+                        </div>
+                    </div>
+                    <div class="ui error message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui page grid stackable segment">
+        <div class="row">
+            <div class="column">
+                <h1 class="center aligned ui header">
+                    Many Companies Rely on Our Cat Knowledge
+                </h1>
+                <div class="ui horizontal divider"><i class="heart icon"></i></div>
+            </div>
+        </div>
+        <div class="center four column aligned row">
+            <div class="column">
+                <div class="ui text shape">
+                    <div class="sides">
+                        <div class="active side">
+                            <i class="huge circular github icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular facebook icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular maxcdn icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular pinterest icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular weibo icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular flickr icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui text shape">
+                    <div class="sides">
+                        <div class="side">
+                            <i class="huge circular github icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular facebook icon"></i>
+                        </div>
+                        <div class="active side">
+                            <i class="huge circular maxcdn icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular pinterest icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular weibo icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular flickr icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui text shape">
+                    <div class="sides">
+                        <div class="side">
+                            <i class="huge circular github icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular facebook icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular maxcdn icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular pinterest icon"></i>
+                        </div>
+                        <div class="active side">
+                            <i class="huge circular weibo icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular flickr icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui text shape">
+                    <div class="sides">
+                        <div class="side">
+                            <i class="huge circular github icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular facebook icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular maxcdn icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular pinterest icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge circular weibo icon"></i>
+                        </div>
+                        <div class="active side">
+                            <i class="huge circular flickr icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="ui inverted orange page grid segment">
+        <div class="two wide column"></div>
+        <div class="twelve wide column">
+            <div class="ui four column stackable grid">
+                <div class="column">
+                    <div class="ui header">友情链接</div>
+                    <div class="ui inverted link list">
+                        <a class="item">味库</a>
+                        <a class="item">下厨房</a>
+                        <a class="item">食色</a>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui header">更多信息</div>
+                    <div class="ui inverted link list">
+                        <a class="item">网站地图</a>
+                        <a class="item">数据统计</a>
+                        <a class="item">投诉 & 建议</a>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui header">关于</div>
+                    <div class="ui inverted link list">
+                        <a class="item">网站信息</a>
+                        <a class="item">技术团队</a>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui header">联系我们</div>
+                    <div class="ui inverted link list">
+                        <a class="item">邮箱：<br/>contact@dangolife.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="two wide right floated aligned column">
+            <h3 class="ui header">联系我们</h3>
+            <addr>
+                237 Catberry Road <br>
+                Milton Keynes, London <br>
+            </addr>
+            <p>邮箱：<br>contact@dangolife.com</p>
+        </div>-->
+    </div>
+</body>
+</html>
